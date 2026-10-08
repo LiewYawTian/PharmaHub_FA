@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaHub - Deliveries</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="js/general.js" defer></script>
+    <script src="js/deliveries.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>PharmaHub Delivery Management</h1>
+        <p>System Time: <strong id="currentSystemClock">Loading...</strong></p>
+    </header>
+
+    <div class="user_bar">
+        <span>Logged in as: <strong id="sidebarUsername">Administrator</strong></span>
+        <button type="button" id="logoutBtn" class="logout_btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
+    </div>
+
+    <nav>
+        <a href="index.html"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+        <a href="inventory.html"><i class="fa-solid fa-pills"></i> Inventory</a>
+        <a href="stock_In-Out.html"><i class="fa-solid fa-right-left"></i> Stock In/Out</a>
+        <a class="active" href="deliveries.html"><i class="fa-solid fa-truck"></i> Deliveries</a>
+        <a href="batches_expiryTracker.html"><i class="fa-solid fa-calendar-days"></i> Batch & Expiry</a>
+        <a href="reports.html"><i class="fa-solid fa-file-invoice-dollar"></i> Reports</a>
+    </nav>
+
+    <main>
+        <!-- Search and Filter -->
+        <fieldset>
+            <legend>Filter Deliveries</legend>
+            <label for="searchDelivery">Search by Delivery ID / Customer / Address:</label>
+            <input type="text" id="searchDelivery" placeholder="e.g. DLV-1001 or John Son">
+
+            <label for="filterStatus">Filter by Status:</label>
+            <select id="filterStatus">
+                <option value="">-- All Statuses --</option>
+                <option value="Pending">Pending</option>
+                <option value="In Transit">In Transit</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled">Cancelled</option>
+            </select>
+
+            <button type="button" id="applyFilterBtn">Apply Filter <i class="fas fa-sliders-h"></i></button>
+            <button type="button" id="resetFilterBtn" class="btn-secondary">Reset <i class="fas fa-redo"></i></button>
+        </fieldset>
+
+        <!-- KPI Summary -->
+        <div class="kpi_grid">
+            <article class="kpi_card">
+                <span>Total Deliveries</span>
+                <h2 id="kpiTotalDeliveries">0</h2>
+            </article>
+            <article class="kpi_card">
+                <span>Pending</span>
+                <h2 id="kpiPending" class="text-warning">0</h2>
+            </article>
+            <article class="kpi_card">
+                <span>In Transit</span>
+                <h2 id="kpiInTransit" class="text-info">0</h2>
+            </article>
+            <article class="kpi_card">
+                <span>Delivered</span>
+                <h2 id="kpiDelivered" class="text-success">0</h2>
+            </article>
+        </div>
+
+        <!-- Delivery Records Table -->
+        <fieldset>
+            <legend>Delivery Records</legend>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Delivery ID</th>
+                        <th>Txn Code</th>
+                        <th>Medicine</th>
+                        <th>Qty</th>
+                        <th>Customer</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Status</th>
+                        <th>Created At</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="deliveryTableBody">
+                    <tr>
+                        <td colspan="10" class="text-center text-muted">Loading deliveries...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </main>
+
+    <footer>
+        <hr>
+        <p>&copy; 2026 PharmaHub System</p>
+    </footer>
+
+</body>
+</html>

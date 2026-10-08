@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaHub - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="js/general.js" defer></script>
+    <script src="js/index.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>PharmaHub Dashboard</h1>
+        <p>System Time: <strong id="currentSystemClock">Loading...</strong></p>
+    </header>
+
+    <div class="user_bar">
+        <span>Logged in as: <strong id="sidebarUsername">Administrator</strong></span>
+        <button type="button" id="logoutBtn" class="logout_btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
+    </div>
+
+    <nav>
+        <a class="active" href="index.html"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+        <a href="inventory.html"><i class="fa-solid fa-pills"></i> Inventory</a>
+        <a href="stock_In-Out.html"><i class="fa-solid fa-right-left"></i> Stock In/Out</a>
+        <a href="deliveries.html"><i class="fa-solid fa-truck"></i> Deliveries</a>
+        <a href="batches_expiryTracker.html"><i class="fa-solid fa-calendar-days"></i> Batch & Expiry</a>
+        <a href="reports.html"><i class="fa-solid fa-file-invoice-dollar"></i> Reports</a>
+    </nav>
+
+    <main>
+        <div class="kpi_grid">
+            <article class="kpi_card">
+                <span>Total Registered SKUs</span>
+                <h2 id="dashTotalSkus" style="color:rgb(100,100,100);">0</h2>
+            </article>
+            <article class="kpi_card">
+                <span>Total Units in Stock</span>
+                <h2 id="dashTotalUnits" style="color: rgb(100,100,100);">0</h2>
+            </article>
+            <article class="kpi_card">
+                <span>Near-Expiry Batches</span>
+                <h2 id="dashNearExpiry" class="text-warning" style="color: orange;">0</h2>
+            </article>
+            <article class="kpi_card">
+                <span>Low Stock Alerts</span>
+                <h2 id="dashLowStock" class="text-danger" style="color: #d9534f;">0</h2>
+            </article>
+        </div>
+
+        <fieldset>
+            <legend>Near Expiry Batches</legend>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Batch No.</th>
+                        <th>Medicine Name</th>
+                        <th>Category</th>
+                        <th>Stock Left</th>
+                        <th>Expiry Date</th>
+                        <th>Days Left</th>
+                        <th>Risk Level</th>
+                    </tr>
+                </thead>
+                <tbody id="dashboardTable">
+                    <tr>
+                        <td colspan="7" class="text-center text-muted">Scanning warehouse batches...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </main>
+
+    <footer>
+        <hr>
+        <p>&copy; 2026 PharmaHub System</p>
+    </footer>
+
+</body>
+</html>
+
+

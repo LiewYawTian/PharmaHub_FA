@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaHub - Reports</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="js/general.js" defer></script>
+    <script src="js/reports.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>PharmaHub Audit Trail Reports</h1>
+        <p>System Time: <strong id="currentSystemClock">Loading...</strong></p>
+    </header>
+
+    <div class="user_bar">
+        <span>Logged in as: <strong id="sidebarUsername">Administrator</strong></span>
+        <button type="button" id="logoutBtn" class="logout_btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
+    </div>
+
+    <nav>
+        <a href="index.html"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+        <a href="inventory.html"><i class="fa-solid fa-pills"></i> Inventory</a>
+        <a href="stock_In-Out.html"><i class="fa-solid fa-right-left"></i> Stock In/Out</a>
+        <a href="deliveries.html"><i class="fa-solid fa-truck"></i> Deliveries</a>
+        <a href="batches_expiryTracker.html"><i class="fa-solid fa-calendar-days"></i> Batch & Expiry</a>
+        <a class="active" href="reports.html"><i class="fa-solid fa-file-invoice-dollar"></i> Reports</a>
+    </nav>
+
+    <main>
+        <!-- Filter for stock in & stock out -->
+        <fieldset>
+            <legend>Filter Transaction Logs</legend>
+            <label for="filterKeyword">Search by Medicine Name / TXN Code:</label>
+            <input type="text" id="filterKeyword" placeholder="e.g. Paracetamol or TXN-2026...">
+
+            <label for="filterType">Filter by Type:</label>
+            <select id="filterType">
+                <option value="">-- All Types --</option>
+                <option value="Stock In">Stock In</option>
+                <option value="Stock Out">Stock Out</option>
+            </select>
+
+            <button type="button" id="applyFilterBtn">Apply Filter <i class="fas fa-sliders-h"></i></button>
+            <button type="button" id="resetFilterBtn" class="btn-secondary">Reset <i class="fas fa-redo"></i></button>
+        </fieldset>
+
+        <fieldset>
+            <legend>Stock Movement Transaction Logs</legend>
+            <table>
+                <thead>
+                    <tr>
+                        <th>TXN Code</th>
+                        <th>
+                            Transaction Time 
+                            <button type="button" id="sortTimeBtn" class="sort_btn" title="Sort Time">&#x25BC; (DESC)</button>
+                        </th>
+                        <th>Medicine</th>
+                        <th>Batch ID</th>
+                        <th>Type</th>
+                        <th>Qty Change</th>
+                        <th>Reason</th>
+                        <th>Updated By</th>
+                        <th>Batch Purchase Info</th>
+                    </tr>
+                </thead>
+                <tbody id="reportsTableBody">
+                    <tr>
+                        <td colspan="9" class="text-center text-muted">Loading logs...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </main>
+
+    <footer>
+        <hr>
+        <p>&copy; 2026 PharmaHub System</p>
+    </footer>
+
+</body>
+</html>
