@@ -40,7 +40,8 @@ const db = mysql.createConnection({
     password: process.env.MYSQLPASSWORD || '',
     database: process.env.MYSQLDATABASE || 'pharmahub_db_fa',
     port: process.env.MYSQLPORT     || 3306,
-    dateStrings: true
+    dateStrings: true,
+    ssl: { rejectUnauthorized: false }
 });
 
 db.connect((err) => {
