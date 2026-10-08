@@ -35,10 +35,11 @@ app.use(express.static(rootDir, { index: false }));
 
 // MySQL database connection
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'pharmahub_db_fa',
+    host: process.env.MYSQLHOST     || 'localhost',
+    user: process.env.MYSQLUSER     || 'root',
+    password: process.env.MYSQLPASSWORD || '',
+    database: process.env.MYSQLDATABASE || 'pharmahub_db_fa',
+    port: process.env.MYSQLPORT     || 3306,
     dateStrings: true
 });
 
@@ -868,6 +869,8 @@ function generateNextDeliveryId() {
         });
     });
 }
-app.listen(3000, () => {
-    console.log('Server running at http://localhost:3000');
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
 });
