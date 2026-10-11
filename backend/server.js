@@ -41,7 +41,6 @@ const db = mysql.createConnection({
     database: process.env.MYSQLDATABASE || 'pharmahub_db_fa',
     port: process.env.MYSQLPORT     || 3306,
     dateStrings: true,
-    ssl: { rejectUnauthorized: false }
 });
 
 db.connect((err) => {
@@ -447,7 +446,7 @@ app.post('/add-stock-out', async (req, res) => {
                 const txnSql = `
                     INSERT INTO stock_transaction 
                     (txn_id, txn_code, batch_id, medicine_id, txn_type, qty_change, reason, user_id, user_name) 
-                    VALUES (?, ?, ?, ?, "Stock Out", ?, ?, ?, ?)
+                    VALUES (?, ?, ?, ?, 'Stock Out', ?, ?, ?, ?)
                 `;
                 await new Promise((resolve, reject) => {
                     db.query(txnSql,
@@ -668,7 +667,7 @@ app.post('/api/write-off-batch', async (req, res) => {
         const txnSql = `
             INSERT INTO stock_transaction 
             (txn_id, txn_code, batch_id, medicine_id, txn_type, qty_change, reason, user_id, user_name) 
-            VALUES (?, ?, ?, ?, "Stock Out", ?, "Expired Write-off (Loss)", ?, ?)
+            VALUES (?, ?, ?, ?, 'Stock Out', ?, 'Expired Write-off (Loss)', ?, ?)
         `;
 
         db.query(txnSql, [
